@@ -3,7 +3,7 @@
 The following example covers local development and test of an ASP.NET Core Blazor application.
 
 For local development use case you can run application with `Development` profile from [launchSettings.json](src/WeatherForecast/Properties/launchSettings.json).
-The application configuration will not include a database connection [sqlServerConnectionString](src/WeatherForecast/Program.cs:14), so it'll use Testcontainers' pre-configured Microsoft SQL Server module from [DatabaseContainer](src/WeatherForecast/DatabaseContainer.cs) to create, start and seed the dependent database.
+The application configuration will not include a database connection [sqlServerConnectionString](src/WeatherForecast/Program.cs), so it'll use Testcontainers' pre-configured Microsoft SQL Server module from [DatabaseContainer](src/WeatherForecast/DatabaseContainer.cs) to create, start and seed the dependent database.
 
 Application will start on [https://localhost:7066/](https://localhost:7066/) and you'll see mssql container running in the Testcontainers Desktop app.
 
