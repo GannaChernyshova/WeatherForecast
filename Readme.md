@@ -1,12 +1,4 @@
-# Testcontainers for .NET WeatherForecast example
-
-This example builds and ships a Blazor application in a Docker image build, runs a Docker container and executes tests against a running instance of the application. Testcontainers for .NET takes care of the Docker image build and the Docker container that hosts the application. Spin up as much as containers as you like and run your tests heavily in parallel. Checkout and run the tests on your machine:
-
-```git lfs version
-dotnet test WeatherForecast.sln --configuration=Release
-```
-
-## WeatherForecast Example
+# WeatherForecast Example
 
 The following example covers local development and test of an ASP.NET Core Blazor application.
 
@@ -78,9 +70,15 @@ As soon as the container is up and the application is running, each test sends a
 
 Testcontainers not only works great for testing an application or service out-of-process, as shown in the example above, but it is probably even better for testing it in-process as shown in [this](https://github.com/testcontainers/testcontainers-dotnet/tree/develop/examples/WeatherForecast/tests/WeatherForecast.InProcess.Tests) example. When used in conjunction with the ASP.NET `WebApplicationFactory<TEntryPoint>` class, Testcontainers spins up the dependent container together with the application, resulting in much faster tests. Depending on the application or service configuration, adding Testcontainers to bootstrap dependent services significantly improves the development experience. There is no longer a need to ensure that dependent services are running and wired up correctly on the development machine or CI environment.
 
+Checkout and run the tests on your machine:
+
+```git lfs version
+dotnet test WeatherForecast.sln --configuration=Release
+```
+
 # ASP.NET Core
 
-No matter if your tests require databases, message brokers, your own services or even a running instance of your entire application, leveraging Testcontainers in your tests means you can set up the infrastructure fast and reliably. You can also run tests in parallel against multiple lightweight or a single shared heavyweight instance, depending on the use case. xUnit.net's [shared context](https://xunit.net/docs/shared-context) and other test frameworks offers several methods to access resources efficiently among different tests and scopes.
+No matter if your application or tests require databases, message brokers, or your own services, leveraging Testcontainers means you can set up the infrastructure fast and reliably. You can also run tests in parallel against multiple lightweight or a single shared heavyweight instance, depending on the use case. xUnit.net's [shared context](https://xunit.net/docs/shared-context) and other test frameworks offers several methods to access resources efficiently among different tests and scopes.
 
 ## Utilizing WebApplicationFactory
 
