@@ -1,0 +1,51 @@
+@implements IDisposable
+
+@inject ISearchCityOrZipCode SearchCityOrZipCode
+
+<FluentCard Style="height: auto; width: auto;">
+  <h1>Weather Forecast</h1>
+  <FluentDataGrid Items="@_weatherData.AsQueryable()">
+    <ChildContent>
+      <PropertyColumn Title="Date" Property="@(item => item.Date.ToShortDateString())"/>
+      <PropertyColumn Title="Avg °C" Property="@(item => item.Temperatures.Average(temperature => temperature.Value).ToString("0"))"/>
+    </ChildContent>
+    <EmptyContent></EmptyContent>
+  </FluentDataGrid>
+
+  @{
+    if (_weatherData.Any())
+    {
+      <p>The weather forecast shows the next <span>@_weatherData.Count</span> days.</p>
+    }
+    else
+    {
+      <br/>
+    }
+  }
+
+  <FluentButton @onclick="_ => SearchCityOrZipCode.ExecuteAsync(string.Empty)">Get weather forecast</FluentButton>
+</FluentCard>
+
+@code
+{
+  private ImmutableList<WeatherData> _weatherData = ImmutableList<WeatherData>.Empty;
+
+  protected override void OnInitialized()
+  {
+    base.OnInitialized();
+    SearchCityOrZipCode.Published += SearchCityOrZipCodeResultPublished;
+  }
+
+  public void Dispose()
+  {
+    SearchCityOrZipCode.Published -= SearchCityOrZipCodeResultPublished;
+  }
+
+  private void SearchCityOrZipCodeResultPublished(object? sender, ResultInfo<IEnumerable<WeatherData>> result)
+  {
+    if (result.IsSuccessful)
+    {
+      _weatherData = ImmutableList<WeatherData>.Empty.AddRange(result.Value);
+    }
+  }
+}

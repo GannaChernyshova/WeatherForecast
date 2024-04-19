@@ -1,0 +1,22 @@
+{
+  "profiles": {
+    "WeatherForecast-Dev": {
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7066;http://localhost:5116"
+    },
+    "WeatherForecast-Staging": {
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Staging"
+      },
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7066;http://localhost:5116"
+    }
+  }
+}
